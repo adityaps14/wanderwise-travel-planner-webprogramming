@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WanderWise - Intelligent Travel Planning System">
+  <title>WanderWise | Intelligent Travel Planning System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div>✦ AI-POWERED TRAVEL PLANNING</div>
+    <span>Personalized itineraries • Smart budgets • Adventure discovery</span>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <a href="#home" class="brand" aria-label="WanderWise Home">
+      <span class="brand-icon">✈</span>
+      <span><strong>Wander<span>Wise</span></strong><small>INTELLIGENT TRAVEL</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="active" href="#home">HOME</a>
+      <a href="#destinations">DESTINATIONS</a>
+      <a href="#experiences">EXPERIENCES</a>
+      <a href="#deals">AI DEALS</a>
+      <a href="#planner">AI PLANNER</a>
+      <a href="#about">ABOUT</a>
+    </nav>
+    <button class="primary-btn nav-cta" onclick="scrollToPlanner()">PLAN MY TRIP <span>→</span></button>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">HOME</a><a href="#destinations">DESTINATIONS</a><a href="#experiences">EXPERIENCES</a><a href="#deals">AI DEALS</a><a href="#planner">AI PLANNER</a><a href="#about">ABOUT</a>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <img class="hero-image" src="assets/hero.jpg" alt="Beautiful tropical travel destination">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <div class="eyebrow">✦ EXPLORE THE WORLD WITH AI</div>
+        <h1>YOUR JOURNEY<br><span>BEYOND BORDERS</span></h1>
+        <p class="hero-copy">Discover breathtaking destinations, hidden routes and personalized adventures — planned intelligently around your time, interests and budget.</p>
+        <div class="hero-actions">
+          <button class="primary-btn" onclick="scrollToPlanner()">START PLANNING <span>→</span></button>
+          <a class="secondary-btn" href="#destinations">EXPLORE DESTINATIONS</a>
+        </div>
+
+        <form class="planner-search" id="quickPlanner" onsubmit="event.preventDefault(); generatePlan();">
+          <label class="field">
+            <span class="field-icon">⌖</span><span class="field-copy"><b>DESTINATION</b><small>Where do you want to go?</small></span>
+            <input id="destination" type="text" placeholder="e.g. Manali, Bali" autocomplete="off">
+          </label>
+          <label class="field">
+            <span class="field-icon">▣</span><span class="field-copy"><b>TRAVEL DAYS</b><small>How long?</small></span>
+            <input id="days" type="number" min="1" max="14" value="5">
+          </label>
+          <label class="field">
+            <span class="field-icon">₹</span><span class="field-copy"><b>BUDGET</b><small>Per traveller</small></span>
+            <select id="budget"><option value="15000">₹15,000</option><option value="30000" selected>₹30,000</option><option value="50000">₹50,000</option><option value="100000">₹1,00,000+</option></select>
+          </label>
+          <label class="field">
+            <span class="field-icon">◇</span><span class="field-copy"><b>TRAVEL STYLE</b><small>Your travel vibe</small></span>
+            <select id="style"><option>Adventure</option><option>Trekking</option><option>Nature</option><option>Luxury</option><option>Family</option></select>
+          </label>
+          <button class="search-btn" type="submit">GENERATE PLAN <span>→</span></button>
+        </form>
+
+        <div class="trust-row">
+          <div><strong>◈ SMART PLANS</strong><small>Personalized itineraries</small></div>
+          <div><strong>♧ HANDPICKED</strong><small>Curated experiences</small></div>
+          <div><strong>◌ 24/7 AI GUIDE</strong><small>Instant travel help</small></div>
+          <div><strong>◇ BUDGET SMART</strong><small>Cost-aware planning</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="destinations">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="section-kicker">DISCOVER</span><h2>POPULAR DESTINATIONS</h2><p>Handpicked places for your next unforgettable journey.</p></div>
+          <a href="#planner" class="outline-btn">VIEW ALL DESTINATIONS →</a>
+        </div>
+        <div class="destination-grid">
+          <article class="destination-card" data-place="Bali, Indonesia" data-style="Nature">
+            <img src="assets/bali.jpg" alt="Bali Indonesia travel destination"><div class="image-shade"></div>
+            <div class="card-top"><span>AI PICK</span><button class="heart" aria-label="Save Bali">♡</button></div>
+            <div class="destination-info"><h3>BALI</h3><p>Indonesia • Beach & Culture</p><div class="rating">★★★★★ <b>4.8</b></div></div>
+          </article>
+          <article class="destination-card" data-place="Maldives" data-style="Luxury">
+            <img src="assets/maldives.jpg" alt="Maldives tropical island"><div class="image-shade"></div>
+            <div class="card-top"><span>AI PICK</span><button class="heart" aria-label="Save Maldives">♡</button></div>
+            <div class="destination-info"><h3>MALDIVES</h3><p>Indian Ocean • Island Luxury</p><div class="rating">★★★★★ <b>4.9</b></div></div>
+          </article>
+          <article class="destination-card" data-place="Switzerland" data-style="Trekking">
+            <img src="assets/switzerland.jpg" alt="Swiss Alps mountains"><div class="image-shade"></div>
+            <div class="card-top"><span>AI PICK</span><button class="heart" aria-label="Save Switzerland">♡</button></div>
+            <div class="destination-info"><h3>SWITZERLAND</h3><p>Europe • Alpine Mountains</p><div class="rating">★★★★★ <b>4.7</b></div></div>
+          </article>
+          <article class="destination-card" data-place="Santorini, Greece" data-style="Luxury">
+            <img src="assets/greece.jpg" alt="Santorini Greece travel destination"><div class="image-shade"></div>
+            <div class="card-top"><span>AI PICK</span><button class="heart" aria-label="Save Santorini">♡</button></div>
+            <div class="destination-info"><h3>SANTORINI</h3><p>Greece • Island Views</p><div class="rating">★★★★★ <b>4.8</b></div></div>
+          </article>
+          <article class="destination-card" data-place="Thailand, Phuket" data-style="Adventure">
+            <img src="assets/thailand.jpg" alt="Thailand adventure destination"><div class="image-shade"></div>
+            <div class="card-top"><span>AI PICK</span><button class="heart" aria-label="Save Thailand">♡</button></div>
+            <div class="destination-info"><h3>THAILAND</h3><p>Phuket • Island Adventure</p><div class="rating">★★★★★ <b>4.6</b></div></div>
+          </article>
+          <article class="destination-card" data-place="Italy, Amalfi Coast" data-style="Luxury">
+            <img src="assets/italy.jpg" alt="Amalfi Coast Italy"><div class="image-shade"></div>
+            <div class="card-top"><span>AI PICK</span><button class="heart" aria-label="Save Italy">♡</button></div>
+            <div class="destination-info"><h3>ITALY</h3><p>Amalfi Coast • Culture</p><div class="rating">★★★★★ <b>4.7</b></div></div>
+          </article>
+          <article class="destination-card" data-place="Dubai, UAE" data-style="Luxury">
+            <img src="assets/dubai.jpg" alt="Dubai city skyline"><div class="image-shade"></div>
+            <div class="card-top"><span>AI PICK</span><button class="heart" aria-label="Save Dubai">♡</button></div>
+            <div class="destination-info"><h3>DUBAI</h3><p>UAE • City Experiences</p><div class="rating">★★★★★ <b>4.8</b></div></div>
+          </article>
+          <article class="destination-card" data-place="New Zealand" data-style="Adventure">
+            <img src="assets/newzealand.jpg" alt="New Zealand mountains and lake"><div class="image-shade"></div>
+            <div class="card-top"><span>AI PICK</span><button class="heart" aria-label="Save New Zealand">♡</button></div>
+            <div class="destination-info"><h3>NEW ZEALAND</h3><p>South Island • Adventure</p><div class="rating">★★★★★ <b>4.9</b></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-section" id="experiences">
+      <div class="container">
+        <div class="ai-panel">
+          <div class="ai-copy">
+            <span class="section-kicker cyan">AI TRAVEL INTELLIGENCE</span>
+            <h2>HIDDEN ROUTES.<br><strong>BIGGER ADVENTURES.</strong></h2>
+            <p>WanderWise combines destination, budget, trip length and travel style to create recommendations that feel made for you.</p>
+            <div class="pill-row"><span>⌁ TREKKING</span><span>⌁ MOUNTAINS</span><span>⌁ TRACKING</span><span>⌁ SCENIC VIEWS</span></div>
+          </div>
+          <div class="map-visual" aria-label="Conceptual AI travel route visualization">
+            <div class="world-shape"></div>
+            <div class="route route-a"></div><div class="route route-b"></div><div class="route route-c"></div>
+            <div class="pin pin-a"><b>NYC</b><small>₹24,999</small></div>
+            <div class="pin pin-b"><b>DXB</b><small>₹18,999</small></div>
+            <div class="pin pin-c"><b>BKK</b><small>₹16,999</small></div>
+            <div class="pin pin-d"><b>BALI</b><small>₹16,999</small></div>
+          </div>
+          <div class="ai-dashboard">
+            <div><span>8.4M+</span><small>routes analyzed</small></div><div><span>23,771</span><small>deals found</small></div><div><span>70%</span><small>potential saving</small></div><div><span>24/7</span><small>smart updates</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section experiences-section">
+      <div class="container">
+        <div class="section-head"><div><span class="section-kicker">ADVENTURE</span><h2>CHOOSE YOUR EXPERIENCE</h2><p>From mountain trails to peaceful beaches, build a trip around what you love.</p></div></div>
+        <div class="experience-grid">
+          <article class="experience-card"><img src="assets/switzerland.jpg" alt="Mountain trekking"><div><span>01</span><h3>MOUNTAIN TREKKING</h3><p>High-altitude trails, viewpoints and unforgettable sunrise hikes.</p></div></article>
+          <article class="experience-card"><img src="assets/newzealand.jpg" alt="Scenic hiking and lakes"><div><span>02</span><h3>SCENIC HIKING</h3><p>Explore peaceful trails, lakes and dramatic natural viewpoints.</p></div></article>
+          <article class="experience-card"><img src="assets/thailand.jpg" alt="Island adventure"><div><span>03</span><h3>ISLAND ADVENTURE</h3><p>Water activities, beaches and tropical experiences.</p></div></article>
+          <article class="experience-card"><img src="assets/italy.jpg" alt="Culture and food travel"><div><span>04</span><h3>CULTURE & FOOD</h3><p>Discover local streets, cuisine, heritage and hidden gems.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section deals-section" id="deals">
+      <div class="container">
+        <div class="section-head"><div><span class="section-kicker">SMART DISCOVERY</span><h2>TOP AI TRAVEL PICKS</h2><p>Example deal cards for the project prototype. Final prices can be connected to live APIs later.</p></div></div>
+        <div class="deal-grid">
+          <article class="deal-card"><img src="assets/deal_bali.jpg" alt="Bali travel deal"><div><span>AI PICK</span><h3>BALI</h3><small>Indonesia</small><strong>₹16,999</strong></div></article>
+          <article class="deal-card"><img src="assets/deal_santorini.jpg" alt="Santorini travel deal"><div><span>AI PICK</span><h3>SANTORINI</h3><small>Greece</small><strong>₹29,999</strong></div></article>
+          <article class="deal-card"><img src="assets/deal_paris.jpg" alt="Paris travel deal"><div><span>AI PICK</span><h3>PARIS</h3><small>France</small><strong>₹24,999</strong></div></article>
+          <article class="deal-card"><img src="assets/deal_tokyo.jpg" alt="Tokyo travel deal"><div><span>AI PICK</span><h3>TOKYO</h3><small>Japan</small><strong>₹31,999</strong></div></article>
+          <article class="deal-card"><img src="assets/deal_newyork.jpg" alt="New York travel deal"><div><span>AI PICK</span><h3>NEW YORK</h3><small>USA</small><strong>₹27,999</strong></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="planner-section" id="planner">
+      <div class="container">
+        <div class="planner-wrap">
+          <div class="planner-intro">
+            <span class="section-kicker cyan">✦ AI TRIP PLANNER</span>
+            <h2>BUILD YOUR<br><strong>PERFECT TRIP</strong></h2>
+            <p>Tell WanderWise what you want. The prototype recommendation engine creates a day-by-day plan based on your destination, time, budget and travel style.</p>
+            <div class="planner-points"><div>✓ Personalized itinerary</div><div>✓ Budget-aware suggestions</div><div>✓ Adventure and nature options</div><div>✓ Flexible day-by-day schedule</div></div>
+          </div>
+          <div class="planner-result-card">
+            <div class="result-header"><div><b>YOUR WANDERWISE PLAN</b><small>AI recommendation preview</small></div><span id="planStatus">READY</span></div>
+            <div id="result" class="result"><div class="empty-result"><span>✦</span><h3>Your itinerary will appear here</h3><p>Choose your preferences above and click <b>Generate Plan</b>.</p></div></div>
+            <div class="result-actions" id="resultActions" hidden><button class="small-btn" onclick="generatePlan()">↻ REGENERATE</button><button class="small-btn" onclick="showToast('Trip saved to your WanderWise profile.')">♡ SAVE TRIP</button><button class="small-btn" onclick="showToast('Share link created for this demo.')">↗ SHARE</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section how-section">
+      <div class="container">
+        <div class="section-head centered"><div><span class="section-kicker">HOW IT WORKS</span><h2>PLAN IN 3 SIMPLE STEPS</h2><p>Simple enough for a first-time traveler, intelligent enough to feel personal.</p></div></div>
+        <div class="steps-grid">
+          <article><span>01</span><div class="step-icon">⌖</div><h3>TELL US YOUR PLAN</h3><p>Enter destination, days, budget and preferred travel style.</p></article>
+          <article><span>02</span><div class="step-icon">✦</div><h3>AI CREATES YOUR ITINERARY</h3><p>WanderWise combines your preferences to build a practical daily route.</p></article>
+          <article><span>03</span><div class="step-icon">✈</div><h3>EXPLORE YOUR JOURNEY</h3><p>Review activities, estimated cost and flexible day-by-day suggestions.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="container about-grid">
+        <div><span class="section-kicker">WHY WANDERWISE</span><h2>SMARTER PLANNING.<br>MORE MEMORABLE TRIPS.</h2><p>WanderWise is an MCA Web Programming project that demonstrates how a modern travel interface can combine responsive design, JavaScript interactions and an intelligent recommendation concept.</p><a href="#planner" class="primary-btn inline-btn">TRY THE PLANNER →</a></div>
+        <div class="about-features"><div><b>01</b><h3>Personalized</h3><p>Recommendations change with your inputs.</p></div><div><b>02</b><h3>Budget Aware</h3><p>Estimated cost remains visible throughout planning.</p></div><div><b>03</b><h3>Adventure Ready</h3><p>Mountain, nature, beach and culture experiences.</p></div><div><b>04</b><h3>API Ready</h3><p>Structured for future AI, maps and weather integration.</p></div></div>
+      </div>
+    </section>
+  </main>
+
+  <button class="assistant-btn" id="assistantBtn">✦ <span>Ask WanderWise AI</span></button>
+  <aside class="chat-panel" id="chatPanel" aria-hidden="true">
+    <div class="chat-head"><div><b>WanderWise AI</b><small>Prototype travel assistant</small></div><button id="chatClose">×</button></div>
+    <div class="chat-body" id="chatBody"><div class="chat-msg bot">Hi! I can help you choose a destination, travel style or trip length. Try: <b>“Suggest a 5-day adventure trip.”</b></div></div>
+    <div class="chat-suggestions"><button data-q="Suggest a 5-day adventure trip.">5-day adventure</button><button data-q="What is good for mountain trekking?">Mountain trip</button></div>
+    <form class="chat-form" id="chatForm"><input id="chatInput" placeholder="Ask about your trip..." autocomplete="off"><button>→</button></form>
+  </aside>
+
+
+  <div class="destination-modal" id="destinationModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="destination-modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Close destination details">×</button>
+      <div class="modal-photo-wrap"><img id="modalPhoto" src="assets/bali.jpg" alt="Destination landscape"><span class="modal-kicker">WANDERWISE DESTINATION GUIDE</span></div>
+      <div class="modal-content">
+        <span class="section-kicker" id="modalRegion">INDONESIA</span>
+        <h2 id="modalTitle">Bali, Indonesia</h2>
+        <p id="modalDescription"></p>
+        <div class="modal-tags" id="modalTags"></div>
+        <div class="modal-detail-grid">
+          <div><span>BEST FOR</span><b id="modalBestFor"></b></div>
+          <div><span>SUGGESTED STAY</span><b id="modalStay"></b></div>
+          <div><span>TRAVEL VIBE</span><b id="modalVibe"></b></div>
+        </div>
+        <h3>Places & experiences to explore</h3>
+        <ul id="modalAttractions" class="modal-attractions"></ul>
+        <p class="modal-note">Travel note: opening times, local conditions, transport and prices can change. Check current local guidance before travelling.</p>
+        <button class="primary-btn modal-plan-btn" id="modalPlanBtn">PLAN A TRIP HERE <span>→</span></button>
+      </div>
+    </article>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <footer>
+    <div class="container footer-inner">
+      <a href="#home" class="brand footer-brand"><span class="brand-icon">✈</span><span><strong>Wander<span>Wise</span></strong><small>INTELLIGENT TRAVEL</small></span></a>
+      <div class="footer-links"><a href="#destinations">Destinations</a><a href="#experiences">Experiences</a><a href="#planner">AI Planner</a><a href="#about">About</a></div>
+      <div class="footer-meta"><b>HTML • CSS • JavaScript</b><span>MCA Academic Project • 2026</span></div>
+      <div class="copyright">© 2026 WanderWise. Academic prototype.</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
