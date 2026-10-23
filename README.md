@@ -38,19 +38,17 @@ This project was developed as part of practical learning in web programming.
 
 ## 🖼️ Screenshots
 
-Add your actual website screenshots to the `screenshots/` folder.
-
 ### Homepage
-![WanderWise homepage](screenshots/homepage.png)
+![WanderWise homepage](screenshots/homepage.png.jpeg)
 
 ### Destinations
-![Destination section](screenshots/destinations.png)
+![Destination section](screenshots/destinations.png.jpeg)
 
 ### Trip Planner
-![Trip planner](screenshots/trip-planner.png)
+![Trip planner](screenshots/trip-planner.png.jpeg)
 
 ### Sample Itinerary
-![Sample itinerary result](screenshots/itinerary-result.png)
+![Sample itinerary result](screenshots/itinerary-result.png.jpeg)
 
 If a feature is not implemented or a screenshot is unavailable, remove that image section until you can provide a genuine screenshot.
 
