@@ -1,46 +1,128 @@
-# WanderWise — Intelligent Travel Planning System
+# 🌍 WanderWise – Intelligent Travel Planning System
 
-A responsive MCA web-programming project built with HTML5, CSS3 and vanilla JavaScript.
+A beginner-friendly web programming project for exploring destinations and organizing sample travel itineraries.
 
-## Run locally
-1. Extract this folder.
-2. Open the folder in VS Code.
-3. Open `index.html` with the Live Server extension, or open `index.html` directly in a browser.
-4. Keep the `assets` folder beside `index.html`; the site uses relative paths such as `assets/hero.jpg`.
+**Student:** Aditya Pratap Singh  
+**UID:** 26MCA20201  
+**Program:** MCA General  
+**University:** Chandigarh University
 
-## Features
-- Responsive travel homepage and sticky navigation
-- Destination cards and travel experience sections with bundled images
-- Budget/day/style trip planner with JavaScript-generated sample itinerary
-- Save/favourite interactions, toast messages and demo travel assistant
-- Accessible labels, responsive navigation and mobile layouts
+## 🔗 Project Links
 
-## Important project scope
-The current planner and assistant are front-end demonstrations using JavaScript rules. No real generative AI, live flight/hotel booking, payment, map, or weather API is connected. Do not present demo prices as live offers.
+- **Live Website:** https://adityaps14.github.io/wanderwise-travel-planner-webprogramming/
+- **Source Code:** https://github.com/adityaps14/wanderwise-travel-planner-webprogramming
 
-## Publish with GitHub Pages
-1. Create a new **public** repository on GitHub, e.g. `wanderwise-travel-planner`.
-2. Upload the contents of this folder (make sure `index.html` is at the repository root, not buried in another folder).
-3. In GitHub, open **Settings → Pages**. Choose **Deploy from a branch**, select `main` and `/ (root)`, then Save.
-4. Wait for the Pages deployment to finish; GitHub will show the public website URL in Settings → Pages.
+## 📌 About the Project
 
-The local URL `http://127.0.0.1:5501/index.html` is only available on your computer and cannot be published from that URL.
+WanderWise is a web-based travel-planning demonstration designed to help users explore destinations and organize basic trip preferences through a simple interface. Depending on the available features, users can enter details such as destination, trip duration, budget, and travel style to view sample itinerary suggestions.
 
+This project was developed as part of practical learning in web programming.
 
-## Neon UI and destination guide update
+## 🎯 Objectives
 
-This updated build uses a dark navy / cyan / electric-blue / violet visual system with warm yellow call-to-action buttons. Destination photography is bundled locally under `assets/`, so destination cards do not depend on third-party image hosts.
+- Create a user-friendly travel-planning website.
+- Present travel destinations with images and information.
+- Practise HTML, CSS, and JavaScript.
+- Demonstrate interactive trip-planning functionality.
+- Publish a static website using GitHub Pages.
 
-### Interactive destination details
-- Click a popular destination card to open its destination guide.
-- The guide includes a short overview, travel vibe, suggested stay, tags, and sample places/experiences.
-- Click **Plan a Trip Here** to pass the destination and suggested travel style into the planner.
-- AI deal cards also open destination information.
-- Adventure experience cards prefill the planner with a relevant style and destination.
-- Close the guide with the close button, click outside the dialog, or press Escape.
+## ✨ Features
 
-### Prototype note
-Place descriptions and suggested experiences are informational demo content. The planner's itinerary and budget are JavaScript prototype estimates, not live booking prices or verified real-time recommendations. Check current official local guidance before travel.
+- Travel destination sections and image cards.
+- Responsive webpage layout.
+- Trip-planning inputs, where implemented.
+- Sample itinerary suggestions using front-end JavaScript logic.
+- Static website deployment through GitHub Pages.
 
-### Run
-Open `index.html` directly or use VS Code Live Server. No build step or npm installation is required.
+> Note: The current version is a front-end demonstration. It does not provide live flight or hotel booking, payment processing, a connected database, or a real generative AI service.
+
+## 🖼️ Screenshots
+
+Add your actual website screenshots to the `screenshots/` folder.
+
+### Homepage
+![WanderWise homepage](screenshots/homepage.png)
+
+### Destinations
+![Destination section](screenshots/destinations.png)
+
+### Trip Planner
+![Trip planner](screenshots/trip-planner.png)
+
+### Sample Itinerary
+![Sample itinerary result](screenshots/itinerary-result.png)
+
+If a feature is not implemented or a screenshot is unavailable, remove that image section until you can provide a genuine screenshot.
+
+## 🛠️ Technologies Used
+
+- **HTML5:** Page structure and content.
+- **CSS3:** Styling, layout, and responsive design.
+- **JavaScript:** Front-end interactions and sample planning logic.
+- **GitHub:** Source-code hosting and version control platform.
+- **GitHub Pages:** Static website hosting.
+
+## 📁 Project Structure
+
+```text
+wanderwise-travel-planner-webprogramming/
+├── assets/                 # Website images
+├── screenshots/            # Project screenshots
+├── index.html              # Main webpage
+├── style.css               # Styles and responsive layout
+├── script.js               # Interactive functionality
+├── README.md               # Project documentation
+├── LICENSE.txt             # License information
+└── .nojekyll               # GitHub Pages configuration
+```
+
+## 🚀 How to View the Project
+
+### Online
+Open the live website:
+https://adityaps14.github.io/wanderwise-travel-planner-webprogramming/
+
+### Run Locally
+1. Download or clone this repository.
+2. Keep the HTML, CSS, JavaScript, and assets in their expected locations.
+3. Open `index.html` in a modern web browser.
+4. Test the navigation, planner inputs, and other available interactions.
+
+You can also open the folder in Visual Studio Code and use a local web-server extension if needed.
+
+## 🧪 Testing Checklist
+
+- [ ] Website opens without a blank page.
+- [ ] Navigation links work.
+- [ ] Destination images load.
+- [ ] Planner inputs accept expected values.
+- [ ] Sample itinerary displays correctly, if implemented.
+- [ ] Layout is readable on desktop and mobile.
+- [ ] All screenshot links in this README display correctly.
+
+## ⚠️ Current Limitations
+
+- No connected backend or database.
+- No live flight or hotel booking.
+- No live pricing or weather integration.
+- No real AI API integration in the current version.
+
+## 🔮 Future Enhancements
+
+- Integrate a real AI recommendation service.
+- Add a database for saved trips.
+- Add live weather and map integrations.
+- Connect to legitimate travel information and booking services.
+- Improve accessibility and validation.
+
+## 🎓 Academic Information
+
+**Project:** WanderWise – Intelligent Travel Planning System  
+**Student:** Aditya Pratap Singh  
+**UID:** 26MCA20201  
+**Program:** MCA General  
+**Institution:** Chandigarh University
+
+## 📄 License
+
+Refer to `LICENSE.txt` for the license associated with this project.
