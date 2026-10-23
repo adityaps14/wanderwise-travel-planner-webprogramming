@@ -90,13 +90,14 @@ You can also open the folder in Visual Studio Code and use a local web-server ex
 
 ## 🧪 Testing Checklist
 
-- [ ] Website opens without a blank page.
-- [ ] Navigation links work.
-- [ ] Destination images load.
-- [ ] Planner inputs accept expected values.
+- [ ] Website opens successfully.
+- [ ] Navigation links work correctly.
+- [ ] Destination images load properly.
+- [ ] Planner inputs accept the expected values.
 - [ ] Sample itinerary displays correctly, if implemented.
-- [ ] Layout is readable on desktop and mobile.
-- [ ] All screenshot links in this README display correctly.
+- [ ] Layout works on desktop and mobile.
+- [ ] All screenshots display correctly in this README.
+
 
 ## ⚠️ Current Limitations
 
