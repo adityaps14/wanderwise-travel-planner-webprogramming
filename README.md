@@ -50,6 +50,11 @@ This project was developed as part of practical learning in web programming.
 ### Sample Itinerary
 ![Sample itinerary result](screenshots/itinerary-result.png.jpeg)
 
+## 📸 Project Screenshots
+
+### Save Trip Plan
+![WanderWise Save Trip Plan](screenshots/save-trip-plan.png)
+
 If a feature is not implemented or a screenshot is unavailable, remove that image section until you can provide a genuine screenshot.
 
 ## 🛠️ Technologies Used
