@@ -25,6 +25,7 @@
       <a href="#deals">AI DEALS</a>
       <a href="#planner">AI PLANNER</a>
       <a href="#about">ABOUT</a>
+      <a href="#myTrips">My Trips</a>
     </nav>
     <button class="primary-btn nav-cta" onclick="scrollToPlanner()">PLAN MY TRIP <span>→</span></button>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
@@ -187,7 +188,7 @@
           <div class="planner-result-card">
             <div class="result-header"><div><b>YOUR WANDERWISE PLAN</b><small>AI recommendation preview</small></div><span id="planStatus">READY</span></div>
             <div id="result" class="result"><div class="empty-result"><span>✦</span><h3>Your itinerary will appear here</h3><p>Choose your preferences above and click <b>Generate Plan</b>.</p></div></div>
-            <div class="result-actions" id="resultActions" hidden><button class="small-btn" onclick="generatePlan()">↻ REGENERATE</button><button class="small-btn" onclick="showToast('Trip saved to your WanderWise profile.')">♡ SAVE TRIP</button><button class="small-btn" onclick="showToast('Share link created for this demo.')">↗ SHARE</button></div>
+            <div class="result-actions" id="resultActions" hidden><button class="small-btn" onclick="saveCurrentTrip()">♡ SAVE TRIP</button>
           </div>
         </div>
       </div>
@@ -245,12 +246,67 @@
   </div>
 
   <div class="toast" id="toast"></div>
+
+  <!-- My Saved Trips Section -->
+  <section class="my-trips-section" id="myTrips">
+    <div class="container">
+      <div class="section-heading">
+        <p class="section-tag">YOUR JOURNEYS</p>
+        <h2>My Saved Trips</h2>
+        <p>Your adventures, saved in one place.</p>
+      </div>
+
+      <div class="my-trips-tools">
+  <input
+    type="search"
+    id="tripSearch"
+    placeholder="Search saved trips by destination..."
+    aria-label="Search saved trips by destination"
+  >
+
+  <p>Total Saved Trips: <strong id="savedTripsCount">0</strong></p>
+</div>
+<div class="clear-trips-toolbar">
+  <button
+    type="button"
+    class="small-btn clear-all-trips-btn"
+    onclick="clearAllTrips()">
+    CLEAR ALL TRIPS
+  </button>
+</div>
+      <div id="savedTripsContainer" class="saved-trips-container">
+        <!-- Saved trips will appear here using JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="container footer-inner">
-      <a href="#home" class="brand footer-brand"><span class="brand-icon">✈</span><span><strong>Wander<span>Wise</span></strong><small>INTELLIGENT TRAVEL</small></span></a>
-      <div class="footer-links"><a href="#destinations">Destinations</a><a href="#experiences">Experiences</a><a href="#planner">AI Planner</a><a href="#about">About</a></div>
-      <div class="footer-meta"><b>HTML • CSS • JavaScript</b><span>MCA Academic Project • 2026</span></div>
-      <div class="copyright">© 2026 WanderWise. Academic prototype.</div>
+      <a href="#home" class="brand footer-brand">
+        <span class="brand-icon">✈</span>
+        <span>
+          <strong>Wander<span>Wise</span></strong>
+          <small>INTELLIGENT TRAVEL</small>
+        </span>
+      </a>
+
+      <div class="footer-links">
+        <a href="#destinations">Destinations</a>
+        <a href="#experiences">Experiences</a>
+        <a href="#planner">AI Planner</a>
+        <a href="#about">About</a>
+        <a href="#myTrips">My Trips</a>
+      </div>
+
+      <div class="footer-meta">
+        <b>HTML • CSS • JavaScript</b>
+        <span>MCA Academic Project • 2026</span>
+      </div>
+
+      <div class="copyright">
+        © 2026 WanderWise. Academic prototype.
+      </div>
     </div>
   </footer>
 

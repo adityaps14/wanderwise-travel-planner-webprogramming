@@ -125,6 +125,282 @@ const recommendations = {
   Family:['Easy sightseeing + local market','Family-friendly nature experience','Cultural attraction + food walk','Relaxed scenic day + local activity']
 };
 
+const SAVED_TRIPS_KEY = 'wanderwise-saved-trips';
+
+function saveCurrentTrip() {
+  const result = document.querySelector('#result');
+  const destinationInput = document.querySelector('#destination');
+
+  const destination =
+    destinationInput.value.trim() || 'Manali, India';
+
+  if (!result || !result.querySelector('.day')) {
+    showToast('Please generate a trip plan first.');
+    return;
+  }
+
+  const trip = {
+    id: Date.now(),
+    destination: destination,
+    planHtml: result.innerHTML,
+    savedAt: new Date().toISOString()
+  };
+
+  try {
+    const savedTrips = JSON.parse(
+      localStorage.getItem(SAVED_TRIPS_KEY) || '[]'
+    );
+
+    if (!Array.isArray(savedTrips)) {
+      throw new Error('Invalid saved trips data');
+    }
+
+    savedTrips.push(trip);
+
+    localStorage.setItem(
+      SAVED_TRIPS_KEY,
+      JSON.stringify(savedTrips)
+    );
+
+    showToast(`"${destination}" trip saved successfully!`);
+  } catch (error) {
+    showToast('Could not save trip. Check browser storage settings.');
+  }
+}
+function renderSavedTrips() {
+  const container = document.querySelector('#savedTripsContainer');
+  if (!container) return;
+
+  let trips = [];
+
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem('wanderwise-saved-trips') || '[]'
+    );
+
+    trips = Array.isArray(saved) ? saved : [];
+  } catch {
+    trips = [];
+  }
+
+  // Update total saved trips counter
+const countElement = document.querySelector('#savedTripsCount');
+
+if (countElement) {
+  countElement.textContent = trips.length;
+}
+
+  if (trips.length === 0) {
+    container.innerHTML = `
+      <div class="empty-trips">
+        <h3>No saved trips yet!</h3>
+        <p>Generate a trip plan and click SAVE TRIP to keep it here.</p>
+        <button class="small-btn" onclick="scrollToPlanner()">
+          PLAN A TRIP
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = trips.map(trip => `
+    <article class="saved-trip-card">
+      <div class="saved-trip-info">
+        <span class="section-tag">SAVED ADVENTURE</span>
+        <h3>${escapeTripText(trip.destination)}</h3>
+        <p>Saved on ${new Date(trip.savedAt).toLocaleDateString()}</p>
+      </div>
+
+      <div class="saved-trip-actions">
+        <button class="small-btn"
+          onclick="viewSavedTrip(${Number(trip.id)})">
+          <button class="small-btn"
+  onclick="exportSavedTrip(${Number(trip.id)})">
+  EXPORT
+</button>
+          VIEW TRIP
+        </button>
+
+        <button class="small-btn"
+          onclick="deleteSavedTrip(${Number(trip.id)})">
+          DELETE
+        </button>
+      </div>
+    </article>
+  `).join('');
+}
+
+function escapeTripText(value) {
+  return String(value ?? '').replace(/[&<>"']/g, character => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[character]);
+}
+
+function viewSavedTrip(id) {
+  let trips = [];
+
+  try {
+    trips = JSON.parse(
+      localStorage.getItem('wanderwise-saved-trips') || '[]'
+    );
+  } catch {
+    showToast('Could not load saved trips.');
+    return;
+  }
+
+  if (!Array.isArray(trips)) {
+    showToast('Saved trips data is invalid.');
+    return;
+  }
+
+  const trip = trips.find(item => item.id === id);
+  if (!trip) {
+    showToast('Saved trip not found.');
+    renderSavedTrips();
+    return;
+  }
+
+  const result = document.querySelector('#result');
+  if (!result) return;
+
+  result.innerHTML = trip.planHtml;
+
+  const actions = document.querySelector('#resultActions');
+  if (actions) actions.hidden = false;
+
+  result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function exportSavedTrip(id) {
+  let trips = [];
+
+  try {
+    trips = JSON.parse(
+      localStorage.getItem('wanderwise-saved-trips') || '[]'
+    );
+  } catch {
+    showToast('Could not load saved trips.');
+    return;
+  }
+
+  if (!Array.isArray(trips)) {
+    showToast('Saved trips data is invalid.');
+    return;
+  }
+
+  const trip = trips.find(item => item.id === id);
+
+  if (!trip) {
+    showToast('Saved trip not found.');
+    return;
+  }
+
+  const temporaryElement = document.createElement('div');
+  temporaryElement.innerHTML = trip.planHtml;
+
+  const planText = temporaryElement.innerText ||
+                   temporaryElement.textContent || '';
+
+  const fileContent =
+    `WanderWise - Saved Trip\n` +
+    `Destination: ${trip.destination}\n` +
+    `Saved on: ${new Date(trip.savedAt).toLocaleDateString()}\n\n` +
+    `TRIP PLAN\n` +
+    `================================\n\n` +
+    planText;
+
+  const blob = new Blob([fileContent], {
+    type: 'text/plain;charset=utf-8'
+  });
+
+  const downloadUrl = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+
+  const safeDestination = String(trip.destination)
+    .replace(/[^a-z0-9_-]/gi, '_');
+
+  link.href = downloadUrl;
+  link.download = `${safeDestination}_Trip_Plan.txt`;
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  URL.revokeObjectURL(downloadUrl);
+
+  showToast('Trip plan downloaded successfully!');
+}
+
+function clearAllTrips() {
+  let trips;
+
+  try {
+    trips = JSON.parse(
+      localStorage.getItem(SAVED_TRIPS_KEY) || '[]'
+    );
+
+    if (!Array.isArray(trips)) {
+      throw new Error('Invalid saved trips data');
+    }
+  } catch (error) {
+    showToast('Could not load saved trips.');
+    return;
+  }
+
+  if (trips.length === 0) {
+    showToast('There are no saved trips to delete.');
+    return;
+  }
+
+  const confirmed = confirm(
+    `Are you sure you want to delete all ${trips.length} saved trips? This action cannot be undone.`
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  try {
+    localStorage.removeItem(SAVED_TRIPS_KEY);
+    renderSavedTrips();
+    showToast('All saved trips have been deleted.');
+  } catch (error) {
+    showToast('Could not delete saved trips.');
+  }
+}
+
+function deleteSavedTrip(id) {
+  if (!confirm('Are you sure you want to delete this saved trip?')) {
+    return;
+  }
+
+  try {
+    const trips = JSON.parse(
+      localStorage.getItem('wanderwise-saved-trips') || '[]'
+    );
+
+    if (!Array.isArray(trips)) {
+      throw new Error('Invalid saved trips data');
+    }
+
+    const updatedTrips = trips.filter(trip => trip.id !== id);
+
+    localStorage.setItem(
+      'wanderwise-saved-trips',
+      JSON.stringify(updatedTrips)
+    );
+
+    renderSavedTrips();
+    showToast('Saved trip deleted.');
+  } catch {
+    showToast('Could not delete the trip.');
+  }
+}
+
 function generatePlan(){
   const destination = $('#destination').value.trim() || 'Manali, India';
   const days = Math.max(1, Math.min(14, Number($('#days').value) || 5));
@@ -213,3 +489,28 @@ sections.forEach(section=>observer.observe(section));
 
 // Keep the demo safe when opened without a backend/API.
 window.WanderWise = { generatePlan, scrollToPlanner, showToast };
+
+// Initialize saved trips when the page loads
+document.addEventListener('DOMContentLoaded', renderSavedTrips);
+
+// Search saved trips by destination
+document.addEventListener('DOMContentLoaded', function () {
+  const searchInput = document.querySelector('#tripSearch');
+
+  if (!searchInput) return;
+
+  searchInput.addEventListener('input', function () {
+    const searchText = this.value.trim().toLowerCase();
+    const tripCards = document.querySelectorAll('.saved-trip-card');
+
+    tripCards.forEach(function (card) {
+      const destination = card
+        .querySelector('h3')
+        ?.textContent.toLowerCase() || '';
+
+      card.style.display = destination.includes(searchText)
+        ? ''
+        : 'none';
+    });
+  });
+});
